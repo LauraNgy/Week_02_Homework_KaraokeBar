@@ -41,8 +41,8 @@ class GuestTest < MiniTest::Test
 
   def test_can_afford
     @guest.buy_drink(@drink2)
-    assert_equal("You can't afford that", @guest.can_afford(@drink2))
-    assert_equal(@drink1, @guest.can_afford(@drink1))
+    assert_equal(false, @guest.can_afford(@drink2))
+    assert_equal(true, @guest.can_afford(@drink1))
   end
 
   def test_buy_drink

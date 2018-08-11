@@ -33,6 +33,11 @@ class Room
   end
 
   def play_song(guest, song)
-
+    if guest.can_afford(song)
+      return song.tune
+    else
+      return "You can't afford that"
+    end
   end
+
 end

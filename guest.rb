@@ -17,20 +17,25 @@ class Guest
     end}
   end
 
+  def can_afford(stuff)
+    if @wallet < stuff.price
+      return false
+    else
+      return true
+    end
+  end
+
   def pay_song_fee(song)
-    @wallet -= song.price
+    if can_afford(song)
+      @wallet -= song.price
+    end
   end
 
   def buy_drink(drink)
-    @wallet -= drink.price
-  end
-
-  def can_afford(stuff)
-    if @wallet < stuff.price
-      return "You can't afford that"
-    else
-      return stuff
+    if can_afford(drink)
+      @wallet -= drink.price
     end
   end
+
 
 end

@@ -67,5 +67,5 @@ class RoomTest < MiniTest::Test
   def test_play_song
     assert_equal("You can't afford that", @room.play_song(@guest1, @song2))
     assert_equal("pip pip", @room.play_song(@guest1, @song1))
-  end
+  end 
 end

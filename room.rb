@@ -26,4 +26,13 @@ class Room
     @song_list.delete(song)
   end
 
+  def show_songs
+    song_names = []
+    @song_list.each { |song| song_names.push(song.name)}
+    return song_names
+  end
+
+  def play_song(guest, song)
+
+  end
 end

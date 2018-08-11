@@ -28,6 +28,8 @@ class Guest
   def can_afford(stuff)
     if @wallet < stuff.price
       return "You can't afford that"
+    else
+      return stuff
     end
   end
 

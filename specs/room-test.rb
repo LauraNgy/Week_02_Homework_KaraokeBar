@@ -60,4 +60,12 @@ class RoomTest < MiniTest::Test
     assert_equal([@song1], @room.song_list)
   end
 
+  def test_show_song_list
+    assert_equal(["Sleeping Sun", "21 Guns"], @room.show_songs())
+  end
+
+  def test_play_song
+    assert_equal("You can't afford that", @room.play_song(@guest1, @song2))
+    assert_equal("pip pip", @room.play_song(@guest1, @song1))
+  end
 end

@@ -36,6 +36,7 @@ class Guest
     if @guest_tab.length != 0
       @guest_tab.each { |stuff|
       @wallet -= stuff.price}
+      @guest_tab = []
     end
   end
 

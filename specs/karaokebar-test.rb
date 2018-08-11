@@ -32,9 +32,46 @@ class KaraokeBarTest < MiniTest::Test
     @rooms = [@room1, @room2, @room3]
     @guest_list1.each { |guest| @room1.guest_list.push(guest)}
     @room2.book(@guest4)
+    @guest1.update_guest_tab(@song2)
+    @guest1.update_guest_tab(@drink1)
     @karaokebar = KaraokeBar.new(100, @rooms, @drinks)
   end
 
+  def test_has_starting_till
+    assert_equal(100, @karaokebar.starting_till)
+  end
 
+  def test_has_ending_till
+    assert_equal(100, @karaokebar.ending_till)
+  end
+
+  def test_has_rooms
+    assert_equal(@rooms, @karaokebar.rooms)
+  end
+
+  def test_has_drinks
+    assert_equal(@drinks, @karaokebar.drinks)
+  end
+
+  def test_retrieve_guest
+    assert_equal(@room1, @karaokebar.retrieve_guest(@guest1))
+  end
+
+  def test_square_up
+    @karaokebar.square_up(@guest1)
+    assert_equal([], @guest1.guest_tab)
+    assert_equal(104, @karaokebar.ending_till)
+    assert_equal([@drink2, @drink3], @karaokebar.drinks)
+  end
+
+  def test_check_stock
+    @karaokebar.square_up(@guest1)
+    assert_equal([@drink2, @drink3], @karaokebar.check_stock)
+  end
+
+  def test_check_profits
+    @karaokebar.square_up(@guest1)
+    assert_equal(4, @karaokebar.check_profits)
+  end
 
 end

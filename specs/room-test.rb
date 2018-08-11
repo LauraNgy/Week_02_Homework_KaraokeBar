@@ -50,4 +50,14 @@ class RoomTest < MiniTest::Test
     assert_equal([@guest1], @room.guest_list)
   end
 
+  def test_add_song_to_list
+    @room.add_song(@song3)
+    assert_equal([@song1, @song2, @song3], @room.song_list)
+  end
+
+  def test_remove_song_from_list
+    @room.remove_song(@song2)
+    assert_equal([@song1], @room.song_list)
+  end
+
 end

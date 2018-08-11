@@ -20,4 +20,8 @@ class SongTest < MiniTest::Test
     assert_equal(1, @song.price)
   end
 
+  def test_ammend_song_price
+    @song.ammend_price(2)
+    assert_equal(2, @song.price)
+  end
 end

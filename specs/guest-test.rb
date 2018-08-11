@@ -10,7 +10,7 @@ class GuestTest < MiniTest::Test
     @guest = Guest.new("Simon", 100, "Sleeping Sun")
     @song1 = Song.new("Sleeping Sun", "pip pip")
     @song2 = Song.new("21 Guns", "tu tu")
-    @song2.price = 2
+    @song2.ammend_price(2)
     @song_arr = [@song1, @song2]
     @drink1 = Drink.new("Mojito", 3)
     @drink2 = Drink.new("Cosmopolitan", 51)

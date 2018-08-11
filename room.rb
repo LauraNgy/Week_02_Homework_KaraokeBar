@@ -1,12 +1,13 @@
 class Room
 
-  attr_reader :name, :song_list, :guest_list, :capacity
+  attr_reader :name, :song_list, :guest_list, :capacity, :booked
 
-  def initialize(name, guest_list, song_list, capacity)
+  def initialize(name, song_list, capacity)
     @name = name
     @song_list = song_list
-    @guest_list = guest_list
     @capacity = capacity
+    @guest_list = []
+    @booked = nil
   end
 
   def in_capacity
@@ -50,5 +51,19 @@ class Room
     end
   end
 
+  def book(guest)
+    @booked = "Room booked by #{guest}"
+    return @booked
+  end
+
+  def status
+    if @guest_list.length != 0
+      return "in use"
+    elsif @booked != nil
+      return "booked"
+    else
+      return "free"
+    end
+  end
 
 end

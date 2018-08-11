@@ -23,7 +23,7 @@ class RoomTest < MiniTest::Test
   def test_room_has_name
     assert_equal("Metal", @room.name)
   end
-  
+
   def test_room_has_guest_list
     assert_equal([@guest1, @guest2], @room.guest_list)
   end
@@ -38,6 +38,16 @@ class RoomTest < MiniTest::Test
 
   def test_room_has_max_capacity
     assert_equal(15, @room.max_capacity)
+  end
+
+  def test_check_in_guest
+    @room.check_in(@guest3)
+    assert_equal([@guest1, @guest2, @guest3], @room.guest_list)
+  end
+
+  def test_check_out_guest
+    @room.check_out(@guest2)
+    assert_equal([@guest1], @room.guest_list)
   end
 
 end

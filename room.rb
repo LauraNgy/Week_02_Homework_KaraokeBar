@@ -10,5 +10,12 @@ class Room
     @max_capacity = max_capacity
   end
 
+  def check_in(guest)
+    @guest_list.push(guest)
+  end
+
+  def check_out(guest)
+    @guest_list.delete(guest)
+  end
 
 end

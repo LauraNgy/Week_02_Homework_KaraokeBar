@@ -53,6 +53,21 @@ class RoomTest < MiniTest::Test
     assert_equal([@guest3], @room.guest_list)
   end
 
+  def test_guest_is_there__true
+    @room.check_in(@guest1)
+    assert_equal(true, @room.is_there(@guest1))
+  end
+
+  def test_guest_is_there__false
+    @room.check_in(@guest1)
+    assert_equal(false, @room.is_there(@guest2))
+  end
+
+  def test_guest_already_there
+    @room.check_in(@guest2)
+    assert_equal("#{@guest2} is there", @room.check_in(@guest2))
+  end
+
   def test_add_song_to_list
     @room.add_song(@song3)
     assert_equal([@song1, @song2, @song3], @room.song_list)
@@ -105,4 +120,5 @@ class RoomTest < MiniTest::Test
     @room.book(@guest1)
     assert_equal("booked", @room.status)
   end
+
 end

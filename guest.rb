@@ -1,11 +1,12 @@
 class Guest
 
-  attr_reader :name, :wallet, :favourite_song
+  attr_reader :name, :wallet, :favourite_song, :guest_tab
 
   def initialize(name, wallet, favourite_song)
     @name = name
     @wallet = wallet
     @favourite_song = favourite_song
+    @guest_tab = []
   end
 
   def check_favourite_song(name, song_list)
@@ -25,15 +26,16 @@ class Guest
     end
   end
 
-  def pay_song_fee(song)
-    if can_afford(song)
-      @wallet -= song.price
+  def update_guest_tab(stuff)
+    if can_afford(stuff)
+      @guest_tab.push(stuff)
     end
   end
 
-  def buy_drink(drink)
-    if can_afford(drink)
-      @wallet -= drink.price
+  def pay_tab
+    if @guest_tab.length != 0
+      @guest_tab.each { |stuff|
+      @wallet -= stuff.price}
     end
   end
 

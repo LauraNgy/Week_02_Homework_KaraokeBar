@@ -18,10 +18,24 @@ class Room
     end
   end
 
+  def is_there(guest)
+    if @guest_list.length > 0
+      @guest_list.each { |is_there|
+      if is_there == guest
+        return true
+      end}
+    end
+    return false
+  end
+
   def check_in(guest)
-    @guest_list.push(guest)
-    if !in_capacity
-      @guest_list.delete(guest)
+    if is_there(guest)
+      return "#{guest} is there"
+    else
+      @guest_list.push(guest)
+      if !in_capacity
+        @guest_list.delete(guest)
+      end
     end
   end
 

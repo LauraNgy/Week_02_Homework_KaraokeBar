@@ -1,17 +1,27 @@
 class Room
 
-  attr_reader :name, :song_list, :guest_list, :capacity, :max_capacity
+  attr_reader :name, :song_list, :guest_list, :capacity
 
-  def initialize(name, guest_list, song_list, max_capacity)
+  def initialize(name, guest_list, song_list, capacity)
     @name = name
     @song_list = song_list
     @guest_list = guest_list
-    @capacity = 10
-    @max_capacity = max_capacity
+    @capacity = capacity
+  end
+
+  def in_capacity
+    if @guest_list.length > @capacity
+      return false
+    else
+      return true
+    end
   end
 
   def check_in(guest)
     @guest_list.push(guest)
+    if !in_capacity
+      @guest_list.delete(guest)
+    end
   end
 
   def check_out(guest)
@@ -39,5 +49,6 @@ class Room
       return "You can't afford that"
     end
   end
+
 
 end

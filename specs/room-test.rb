@@ -17,7 +17,7 @@ class RoomTest < MiniTest::Test
     @song2.ammend_price(101)
     @song3 = Song.new("The Gift", "pa pap")
     @song_list = [@song1, @song2]
-    @room = Room.new("Metal", @guest_list, @song_list, 15)
+    @room = Room.new("Metal", @guest_list, @song_list, 2)
   end
 
   def test_room_has_name
@@ -33,21 +33,18 @@ class RoomTest < MiniTest::Test
   end
 
   def test_room_has_capacity
-    assert_equal(10, @room.capacity)
-  end
-
-  def test_room_has_max_capacity
-    assert_equal(15, @room.max_capacity)
-  end
-
-  def test_check_in_guest
-    @room.check_in(@guest3)
-    assert_equal([@guest1, @guest2, @guest3], @room.guest_list)
+    assert_equal(2, @room.capacity)
   end
 
   def test_check_out_guest
     @room.check_out(@guest2)
     assert_equal([@guest1], @room.guest_list)
+  end
+
+  def test_check_in_guest
+    @room.check_out(@guest2)
+    @room.check_in(@guest3)
+    assert_equal([@guest1, @guest3], @room.guest_list)
   end
 
   def test_add_song_to_list
@@ -67,5 +64,16 @@ class RoomTest < MiniTest::Test
   def test_play_song
     assert_equal("You can't afford that", @room.play_song(@guest1, @song2))
     assert_equal("pip pip", @room.play_song(@guest1, @song1))
-  end 
+  end
+
+  def test_room_in_capacity__true
+    assert_equal(true, @room.in_capacity)
+  end
+
+  def test_room_in_capacity__false
+    @room.guest_list.push(@guest3)
+    assert_equal(false, @room.in_capacity)
+  end
+
+  
 end
